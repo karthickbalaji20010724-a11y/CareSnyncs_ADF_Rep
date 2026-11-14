@@ -110,7 +110,14 @@
 				"outputs": [
 					{
 						"referenceName": "DS_ADLS_LANDING",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"container": "landing",
+							"folder": {
+								"value": "@concat(\nactivity('READ TABLE DETAILS').output.firstRow.source_system,\n'/',\nactivity('READ TABLE DETAILS').output.firstRow.source_table_name,\n'/',\nvariables('start time')\n)",
+								"type": "Expression"
+							}
+						}
 					}
 				]
 			}
