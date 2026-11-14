@@ -1,0 +1,26 @@
+{
+	"name": "DS_ADLS_LANDING",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_ADSLS",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"container": {
+				"type": "string"
+			},
+			"folder": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
