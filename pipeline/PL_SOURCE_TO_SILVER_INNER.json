@@ -120,6 +120,84 @@
 						}
 					}
 				]
+			},
+			{
+				"name": "Landing_to_Bronze",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Source_To_Landing_ingestion",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/karthickbalaji20010724@gmail.com/CareSync_Repo/caresync-adb-repo/Landing_to_Bronze",
+					"baseParameters": {
+						"source_system": {
+							"value": "@activity('READ TABLE DETAILS').output.firstRow.source_system",
+							"type": "Expression"
+						},
+						"table_name": {
+							"value": "@activity('READ TABLE DETAILS').output.firstRow.bronze_table_name",
+							"type": "Expression"
+						},
+						"landing_timestamp": {
+							"value": "@variables('start time')",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "LS_DataBricks",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Bronze_to_silver",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Landing_to_Bronze",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/karthickbalaji20010724@gmail.com/CareSync_Repo/caresync-adb-repo/Bronze_to_Silver",
+					"baseParameters": {
+						"table_name": {
+							"value": "@activity('READ TABLE DETAILS').output.firstRow.silver_table_name",
+							"type": "Expression"
+						},
+						"landing_timestamp": {
+							"value": "@variables('start time')",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "LS_DataBricks",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"parameters": {
