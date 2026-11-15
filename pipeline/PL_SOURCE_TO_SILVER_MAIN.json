@@ -114,7 +114,7 @@
 								{
 									"activity": "Execute source to landing pipeline",
 									"dependencyConditions": [
-										"Succeeded"
+										"Failed"
 									]
 								}
 							],
@@ -135,7 +135,7 @@
 									{
 										"type": "Query",
 										"text": {
-											"value": "INSERT INTO ctrl.audit_log\n    (adf_run_id, table_id, stage, status, start_time)\nVALUES\n    ('A1', @{item().table_id}, 'SOURCE_TO_SILVER', 'IN_PROGRESS', SYSUTCDATETIME());",
+											"value": "update ctrl.audit_log\nSET STATUS ='FAILED' ,end_time = SYSUTCDATETIME()\nwhere adf_run_id = '@{pipeline().parameters.adf_run_id}' and table_id = @{item().table_id};",
 											"type": "Expression"
 										}
 									}
