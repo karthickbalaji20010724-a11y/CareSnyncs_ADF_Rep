@@ -75,7 +75,8 @@
 									"table_id": {
 										"value": "@item().table_id",
 										"type": "Expression"
-									}
+									},
+									"adf_run_id": "A4"
 								}
 							}
 						},
