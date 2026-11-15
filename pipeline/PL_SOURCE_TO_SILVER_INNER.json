@@ -176,7 +176,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/Users/karthickbalaji20010724@gmail.com/CareSync_Repo/caresync-adb-repo/Bronze_to_Silver",
+					"notebookPath": "/Users/karthickbalaji20010724@gmail.com/CareSync_Repo/caresync-adb-repo/Bronze_to_silver 2026-11-15 12:01:07",
 					"baseParameters": {
 						"table_name": {
 							"value": "@activity('READ TABLE DETAILS').output.firstRow.silver_table_name",
