@@ -144,6 +144,23 @@
 								],
 								"scriptBlockExecutionTimeout": "02:00:00"
 							}
+						},
+						{
+							"name": "update pipeline",
+							"type": "Fail",
+							"dependsOn": [
+								{
+									"activity": "Execute source to landing pipeline",
+									"dependencyConditions": [
+										"Failed"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"message": "Inner pipeline failed",
+								"errorCode": "500"
+							}
 						}
 					]
 				}
