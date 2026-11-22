@@ -4,6 +4,7 @@
 		"activities": [
 			{
 				"name": "Source to Silver Postgres",
+				"description": "Pipeline to ingest data from postgress to ADLS",
 				"type": "ExecutePipeline",
 				"dependsOn": [],
 				"policy": {
@@ -27,6 +28,7 @@
 			},
 			{
 				"name": "Source to Silver ADLS_CSV",
+				"description": "Pipeeline to ingest data from CSV file to ADLS",
 				"type": "ExecutePipeline",
 				"dependsOn": [],
 				"policy": {
@@ -50,6 +52,7 @@
 			},
 			{
 				"name": "Silver to Gold",
+				"description": "Transform the data from silver to Gold",
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
